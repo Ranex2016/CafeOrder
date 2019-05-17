@@ -23,15 +23,13 @@ public class LoginActivity extends AppCompatActivity {
     public void onClickCreateOrder(View view) {
         String name = editTextName.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
-        if(!name.isEmpty() &&!password.isEmpty())
-        {
+        if(!name.isEmpty() &&!password.isEmpty()) {
             Intent intent = new Intent(this,CreateOrderActivity.class); //Создание активности
             intent.putExtra("name",name);
             intent.putExtra("password",password);
             startActivity(intent); //Запускаем нашу активность
         }
-        else
-        {
+        else {
             Toast.makeText(this,R.string.warning_fill_fields,Toast.LENGTH_SHORT).show();
         }
 

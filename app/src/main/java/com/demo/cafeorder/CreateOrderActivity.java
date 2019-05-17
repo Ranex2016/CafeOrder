@@ -29,13 +29,11 @@ public class CreateOrderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
         Intent intent = getIntent();
-        if(intent.hasExtra("name") && intent.hasExtra("password"))
-        {
+        if(intent.hasExtra("name") && intent.hasExtra("password")) {
             name = intent.getStringExtra("name");
             password = intent.getStringExtra("password");
         }
-        else
-        {
+        else {
             name = getString(R.string.default_name);
             password = getString(R.string.default_password);
         }
@@ -64,15 +62,13 @@ public class CreateOrderActivity extends AppCompatActivity {
     public void onClickChangeDrink(View view) {
         RadioButton button = (RadioButton)view;
         int id = button.getId();
-        if(id == R.id.radioButtonTea)
-        {
+        if(id == R.id.radioButtonTea) {
             drink = getString(R.string.tea);
             spinnerTea.setVisibility(View.VISIBLE);
             spinnerCoffee.setVisibility(View.INVISIBLE);
             checkBoxLemon.setVisibility(View.VISIBLE);
         }
-        if (id == R.id.radioButtonCoffee)
-        {
+        if (id == R.id.radioButtonCoffee) {
             drink = getString(R.string.coffee);
             spinnerCoffee.setVisibility(View.VISIBLE);
             spinnerTea.setVisibility(View.INVISIBLE);
@@ -85,35 +81,28 @@ public class CreateOrderActivity extends AppCompatActivity {
 
     public void onClickSendOrder(View view) {
         builderAdditions.setLength(0);
-        if(checkBoxMilk.isChecked())
-        {
+        if(checkBoxMilk.isChecked()) {
             builderAdditions.append("\n").append(getString(R.string.milk)).append(" ");
         }
-        if ((checkBoxSugar.isChecked()))
-        {
+        if ((checkBoxSugar.isChecked())) {
             builderAdditions.append("\n").append(getString(R.string.sugar)).append(" ");
         }
-        if (checkBoxLemon.isChecked() && drink.equals(getString(R.string.tea)))
-        {
+        if (checkBoxLemon.isChecked() && drink.equals(getString(R.string.tea))) {
             builderAdditions.append("\n").append(getString(R.string.lemon)).append(" ");
         }
         String optionOfDrink = "";
-        if(drink.equals(getString(R.string.tea)))
-        {
+        if(drink.equals(getString(R.string.tea))) {
             optionOfDrink = spinnerTea.getSelectedItem().toString();
         }
-        else
-        {
+        else {
             optionOfDrink = spinnerCoffee.getSelectedItem().toString();
         }
         String order = String.format(getString(R.string.order),name,password,drink, optionOfDrink);
         String additions;
-        if(builderAdditions.length()>0)
-        {
+        if(builderAdditions.length()>0) {
             additions = "\n"+getString(R.string.need_additions) + builderAdditions.toString();
         }
-        else
-        {
+        else {
             additions = "";
         }
         String fullOrder = order + additions;
